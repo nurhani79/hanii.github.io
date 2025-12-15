@@ -15,7 +15,7 @@
       --border-soft: #e5e7eb;
       --text-primary: #0f172a;
       --text-secondary: #64748b;
-      --accent: #0b3c5d; /* Ocean Blue (UMT-inspired) */
+      --accent: #0b3c5d; /* Ocean Blue */
     }
 
     * {
@@ -48,6 +48,14 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+
+    /* Hover effect */
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
     }
 
     .card h2 {
@@ -69,53 +77,58 @@
       color: var(--accent);
     }
 
-    /* Card Sizes */
-    .profile {
-      grid-column: span 6;
-      grid-row: span 2;
-    }
-
-    .location {
-      grid-column: span 3;
-    }
-
-    .hobby {
-      grid-column: span 3;
-    }
-
-    .tech {
-      grid-column: span 4;
-      grid-row: span 2;
-    }
-
-    .case-study {
-      grid-column: span 4;
-      grid-row: span 2;
-    }
-
-    .playlist {
-      grid-column: span 12;
-      min-height: 140px;
-    }
-
-    .social-links span {
+    .social-links a {
       display: inline-block;
       margin-right: 14px;
       font-size: 0.85rem;
       font-weight: 500;
       color: var(--accent);
-      cursor: pointer;
+      text-decoration: none;
     }
+
+    .social-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Card Sizes */
+    .profile {
+      grid-column: span 6;
+      grid-row: span 2;
+
+      /* Background image */
+      background-image: url('bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #ffffff;
+    }
+
+    /* Overlay for readability */
+    .profile::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(11, 60, 93, 0.6); /* Ocean Blue overlay */
+      border-radius: 18px;
+      z-index: 0;
+    }
+
+    .profile > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .location { grid-column: span 3; }
+    .hobby { grid-column: span 3; }
+    .reflection { grid-column: span 3; }
+    .tech { grid-column: span 4; grid-row: span 2; }
+    .case-study { grid-column: span 4; grid-row: span 2; }
+    .playlist { grid-column: span 12; min-height: 140px; }
 
     /* Mobile Responsive */
     @media (max-width: 768px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
-
-      .card {
-        grid-column: span 1 !important;
-      }
+      .container { grid-template-columns: 1fr; }
+      .card { grid-column: span 1 !important; }
     }
   </style>
 </head>
@@ -132,9 +145,9 @@
         <p class="tagline">Happy plant grow.</p>
       </div>
       <div class="social-links">
-        <span>LinkedIn</span>
-        <span>GitHub</span>
-        <span>UMT Portal</span>
+        <a href="#" target="_blank">LinkedIn</a>
+        <a href="https://nurhani79.github.io/hanii.github.io/" target="_blank">GitHub</a>
+        <a href="#" target="_blank">UMT Portal</a>
       </div>
     </div>
 
@@ -152,6 +165,18 @@
       <div>
         <h2>Hobby</h2>
         <p>Evening walks at Pantai UMT</p>
+      </div>
+    </div>
+
+    <!-- New Card: Reflection -->
+    <div class="card reflection">
+      <div>
+        <h2>Why Food Tech Matters in Malaysia</h2>
+        <p>
+          Sustainable food security is crucial for our future.
+          By optimizing local processing methods, we can reduce waste
+          and improve nutrition.
+        </p>
       </div>
     </div>
 
@@ -179,7 +204,9 @@
     <div class="card playlist">
       <div>
         <h2>Study Playlist</h2>
-        <p>Placeholder for a calming study or lab-work music player</p>
+        <p>
+          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3yWuTOYDztXjZxdE2cIRUa?utm_source=generator" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </p>
       </div>
     </div>
 
